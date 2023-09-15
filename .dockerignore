@@ -1,0 +1,6 @@
+.env
+.editoreconfig
+bin/*
+obj/*
+.vscode/*
+appsettings.Development.json

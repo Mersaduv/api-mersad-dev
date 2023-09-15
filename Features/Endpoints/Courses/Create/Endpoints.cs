@@ -14,7 +14,7 @@ public class Endpoints : Endpoint<Request, Response>
 
     public override void Configure()
     {
-        Post("/api/course");
+        Post("course");
         AllowAnonymous();
     }
 

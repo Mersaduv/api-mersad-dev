@@ -12,7 +12,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=Tehran123;Server=app_db;Port=5433;Database=BigDb;IntegratedSecurity=true;Pooling=true;
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=Tehran123;Server=app_db;Port=5432;Database=BigDb;IntegratedSecurity=true;Pooling=true;
       - ASPNETCORE_URLS=http://+:80
     networks:
       - dev

@@ -9,7 +9,7 @@ public static class SwaggerConfigurationExtensions
         services.AddSwaggerDoc(options =>
         {
             options.DocumentName = "Initial Release";
-            options.Title = "Events.Api";
+            options.Title = "Mersad-Dev.Api";
             options.Version = "v1.0";
         },
         maxEndpointVersion: 1);

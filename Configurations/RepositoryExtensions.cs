@@ -1,5 +1,7 @@
 using static mersad_dev.Features.Endpoints.Courses.Create.Data;
+using static mersad_dev.Features.Endpoints.Courses.Delete.Data;
 using static mersad_dev.Features.Endpoints.Courses.Get.Data;
+using static mersad_dev.Features.Endpoints.Courses.Update.Data;
 
 namespace mersad_dev.Configurations;
 
@@ -9,9 +11,7 @@ public static class RepositoryExtensions
     {
         services.AddScoped<ICreateRepository, CreateRepository>();
         services.AddScoped<IGetRepository, GetRepository>();
-        // services.AddScoped<DeleteRepo.IRepository, DeleteRepo.Repository>();
-        // services.AddScoped<UpdateRepo.IRepository, UpdateRepo.Repository>();
-        // services.AddScoped<WebCreatorRepo.IRepository, WebCreatorRepo.Repository>();
-        // services.AddScoped<WebGetRepo.IRepository, WebGetRepo.Repository>();
+        services.AddScoped<IDeleteRepository, DeleteRepository>();
+        services.AddScoped<IUpdateRepository, UpdateRepository>();
     }
 }
