@@ -1,4 +1,6 @@
 
+using mersad_dev.Entities.Courses;
+using mersad_dev.Utility;
 using static mersad_dev.Features.Endpoints.Courses.Get.Data;
 
 namespace mersad_dev.Features.Endpoints.Courses.Get;
@@ -6,9 +8,11 @@ namespace mersad_dev.Features.Endpoints.Courses.Get;
 public class GetEndpoint : Endpoint<Request, Response>
 {
     private readonly IGetRepository _repository;
+    private readonly ByteFileUtility _byteFileUtility;
 
-    public GetEndpoint(IGetRepository repository)
+    public GetEndpoint(IGetRepository repository, ByteFileUtility byteFileUtility)
     {
+        _byteFileUtility = byteFileUtility;
         _repository = repository;
     }
 
@@ -30,6 +34,7 @@ public class GetEndpoint : Endpoint<Request, Response>
         }
 
         var coursesResponse = courses.ToCourseResponse();
+        coursesResponse.ThumbnailUrl = _byteFileUtility.GetEncryptedFileActionUrl(courses.ThumbnailFileName, nameof(Course));
         await SendOkAsync(coursesResponse, ct);
     }
 

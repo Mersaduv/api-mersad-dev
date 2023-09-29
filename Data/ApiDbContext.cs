@@ -1,6 +1,8 @@
 namespace mersad_dev.Data;
 
-using Entities;
+using mersad_dev.Configurations;
+using mersad_dev.Entities.Courses;
+
 using Microsoft.EntityFrameworkCore;
 
 
@@ -11,9 +13,9 @@ public class ApiDbContext : DbContext
     }
 
     public DbSet<Course>? Courses { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new CourseEntityConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 

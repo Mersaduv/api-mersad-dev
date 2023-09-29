@@ -1,5 +1,5 @@
 using mersad_dev.Data;
-using mersad_dev.Entities;
+using mersad_dev.Entities.Courses;
 
 namespace mersad_dev.Features.Endpoints.Courses.Create;
 

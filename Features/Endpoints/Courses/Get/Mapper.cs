@@ -1,8 +1,8 @@
-using mersad_dev.Entities;
+using mersad_dev.Entities.Courses;
 
 namespace mersad_dev.Features.Endpoints.Courses.Get;
 
-public static class EventMapper
+public static class GetCourseMapper
 {
     public static Response ToCourseResponse(this Course course)
     {
@@ -10,31 +10,42 @@ public static class EventMapper
         {
             Id = course.Id,
             Title = course.Title,
-            IsOnline = course.IsOnline,
-            Instructor = course.Instructor,
             Tuition = course.Tuition,
+            Avatar = course.Avatar,
+            IsDeleted = course.IsDeleted,
             Category = course.Category,
             CategoryId = course.CategoryId,
+            Instructor = course.Instructor,
+            Descriptions = course.Descriptions,
+            Keyword = course.Keyword,
+            Episode = course.Episode,
+            IsComplete = course.IsComplete,
             Created = course.Created,
             LastUpdated = course.LastUpdated
         };
     }
 
-    public static GetAllResponse ToCoursesResponse(this IEnumerable<Course> events)
+    public static GetAllResponse ToCoursesResponse(this IEnumerable<Course> courses, Utility.ByteFileUtility _byteFileUtility)
     {
         return new GetAllResponse
         {
-            Courses = events.Select(eve => new Response
+            Courses = courses.Select(course => new Response
             {
-                Id = eve.Id,
-                Title = eve.Title,
-                IsOnline = eve.IsOnline,
-                Instructor = eve.Instructor,
-                Tuition = eve.Tuition,
-                Category = eve.Category,
-                CategoryId = eve.CategoryId,
-                Created = eve.Created,
-                LastUpdated = eve.LastUpdated
+                Id = course.Id,
+                Title = course.Title,
+                Tuition = course.Tuition,
+                Avatar = course.Avatar,
+                IsDeleted = course.IsDeleted,
+                Category = course.Category,
+                CategoryId = course.CategoryId,
+                Instructor = course.Instructor,
+                Descriptions = course.Descriptions,
+                Keyword = course.Keyword,
+                Episode = course.Episode,
+                IsComplete = course.IsComplete,
+                ThumbnailUrl = _byteFileUtility.GetEncryptedFileActionUrl(course.ThumbnailFileName, nameof(Course)),
+                Created = course.Created,
+                LastUpdated = course.LastUpdated
             })
         };
     }

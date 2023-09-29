@@ -22,11 +22,15 @@ namespace mersad_dev.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("mersad_dev.Entities.Course", b =>
+            modelBuilder.Entity("mersad_dev.Entities.Courses.Course", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Avatar")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Category")
                         .IsRequired()
@@ -38,52 +42,53 @@ namespace mersad_dev.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Descriptions")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Episode")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Instructor")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsOnline")
+                    b.Property<bool>("IsComplete")
                         .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Keyword")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastUpdated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
+                    b.Property<byte[]>("Thumbnail")
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("ThumbnailFileExtension")
                         .HasColumnType("text");
 
-                    b.Property<double>("Tuition")
-                        .HasColumnType("double precision");
+                    b.Property<string>("ThumbnailFileName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("ThumbnailFileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<long>("Tuition")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("78debb24-e076-4f5a-a7ee-c84470463b70"),
-                            Category = "course",
-                            CategoryId = 1,
-                            Created = new DateTime(2023, 9, 14, 8, 49, 1, 33, DateTimeKind.Utc).AddTicks(4711),
-                            Instructor = "mrsd",
-                            IsOnline = true,
-                            LastUpdated = new DateTime(2023, 9, 14, 8, 49, 1, 33, DateTimeKind.Utc).AddTicks(4717),
-                            Title = "evlore,pw",
-                            Tuition = 100.0
-                        },
-                        new
-                        {
-                            Id = new Guid("de933b40-8150-4bc3-8f9f-29419fc6d136"),
-                            Category = "course",
-                            CategoryId = 1,
-                            Created = new DateTime(2023, 9, 14, 8, 49, 1, 33, DateTimeKind.Utc).AddTicks(4721),
-                            Instructor = "mrsd 2",
-                            IsOnline = true,
-                            LastUpdated = new DateTime(2023, 9, 14, 8, 49, 1, 33, DateTimeKind.Utc).AddTicks(4722),
-                            Title = "evlore,pw",
-                            Tuition = 200.0
-                        });
+                    b.ToTable("InitCourses", (string)null);
                 });
 #pragma warning restore 612, 618
         }

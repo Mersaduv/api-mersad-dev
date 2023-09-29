@@ -1,5 +1,5 @@
 using mersad_dev.Data;
-using mersad_dev.Entities;
+using mersad_dev.Entities.Courses;
 using Microsoft.EntityFrameworkCore;
 
 namespace mersad_dev.Features.Endpoints.Courses.Update;
@@ -24,9 +24,12 @@ public class Data
             if (existingCourse == null)
                 return;
             existingCourse.Title = course.Title;
-            existingCourse.IsOnline = course.IsOnline;
+            existingCourse.IsDeleted = course.IsDeleted;
             existingCourse.Category = course.Category;
             existingCourse.CategoryId = course.CategoryId;
+            existingCourse.Descriptions = course.Descriptions;
+            existingCourse.Episode = course.Episode;
+            existingCourse.IsComplete = course.IsComplete;
             existingCourse.Instructor = course.Instructor;
             existingCourse.Created = course.Created;
 

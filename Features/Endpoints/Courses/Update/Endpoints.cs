@@ -30,11 +30,13 @@ public class Endpoints : Endpoint<Request, Response>
             await SendNotFoundAsync(ct);
         }
         existingCourse.Title = req.Title;
-        existingCourse.IsOnline = req.IsOnline;
+        existingCourse.IsDeleted = req.IsDeleted;
         existingCourse.Category = req.Category;
         existingCourse.CategoryId = req.CategoryId;
+        existingCourse.Descriptions = req.Descriptions;
+        existingCourse.Episode = req.Episode;
+        existingCourse.IsComplete = req.IsComplete;
         existingCourse.Instructor = req.Instructor;
-        existingCourse.Created = req.Created;
 
         await _repository.UpdateAsync(existingCourse);
 

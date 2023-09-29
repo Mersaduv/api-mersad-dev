@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mersad-app:
-    image: docker.io/library/mersad-img
+    image: docker.io/library/mersad-dev
     depends_on:
       - app_db
     container_name: mersad-services
@@ -18,7 +18,7 @@ services:
       - dev
 
   app_db:
-    image: postgres:latest
+    image: postgres:15
     container_name: app_db
     environment:
       - POSTGRES_USER=postgres
