@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  mersad-app:
+    image: docker.io/library/mersad-dev
+    depends_on:
+      - app_db
+    container_name: mersad-services
+    ports:
+      - "8088:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=Tehran123;Server=app_db;Port=5432;Database=BigDb;IntegratedSecurity=true;Pooling=true;
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - dev
+
+  app_db:
+    image: postgres:15
+    container_name: app_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Tehran123
+      - POSTGRES_DB=BigDb
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - app_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+networks:
+  dev:
+    driver: bridge
+
+volumes:
+  app_data:
